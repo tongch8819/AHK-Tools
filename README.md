@@ -11,3 +11,4 @@ Features:
 
 Bugs
 1. scripts after click does not work
+2. sumatra pdf quick open needs 2 steps
