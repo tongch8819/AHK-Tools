@@ -17,39 +17,39 @@ CapsLock::Return
 
 
 ; after copy the file path of current tab, Ctrl+Shift+e to open current tab in MS Edge
-^+e::
-{
-    if !WinExist("ahk_exe SumatraPDF.exe")
-    {
-        MsgBox("Sumatra PDF is not running.")
-        return
-    }
+; ^+e::
+; {
+;     if !WinExist("ahk_exe SumatraPDF.exe")
+;     {
+;         MsgBox("Sumatra PDF is not running.")
+;         return
+;     }
 
 
-    FileToOpen := A_Clipboard
+;     FileToOpen := A_Clipboard
 
-    if FileToOpen = ""
-    {
-        MsgBox("Failed to get file path. Clipboard is empty.")
-        return
-    }
+;     if FileToOpen = ""
+;     {
+;         MsgBox("Failed to get file path. Clipboard is empty.")
+;         return
+;     }
 
-    if !FileExist(FileToOpen)
-    {
-        MsgBox("File does not exist: " . FileToOpen)
-        return
-    }
+;     if !FileExist(FileToOpen)
+;     {
+;         MsgBox("File does not exist: " . FileToOpen)
+;         return
+;     }
 
-    try
-    {
-        Run "msedge.exe " . FileToOpen
-        ; MsgBox("Opened in Edge: " . FileToOpen)
-    }
-    catch as err
-    {
-        MsgBox("Error opening file: " . err.Message)
-    }
-}
+;     try
+;     {
+;         Run "msedge.exe " . FileToOpen
+;         ; MsgBox("Opened in Edge: " . FileToOpen)
+;     }
+;     catch as err
+;     {
+;         MsgBox("Error opening file: " . err.Message)
+;     }
+; }
 
 
 
@@ -72,3 +72,12 @@ CapsLock::Return
 ; }
 
 
+#Requires AutoHotkey v2.0
+#SingleInstance
+
+; Set the scrolling speed multiplier
+Speed := 5
+
+; When Alt is held down, increase scroll speed
+!WheelUp::Send("{WheelUp " Speed "}")
+!WheelDown::Send("{WheelDown " Speed "}")
